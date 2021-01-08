@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+.main {
+  background-image: url('./assets/99840.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Open Sans', sans-serif;
+
+  .notification {
+    position: absolute;
+    margin: 1rem;
+    z-index: 1;
+    font-size: 0.8rem;
+    display: inline-block;
+    padding: 0.4rem;
+    border-radius: 5px;
+    background-color: #c8c8c8;
+    color: rgb(0, 0, 0);
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    .notificationText {
+      top: 50%;
+      transform: translateY(-30%);
+    }
+
+    // .triangle {
+    //   width: 0;
+    //   height: 0;
+    //   border-top: 5px solid transparent;
+    //   border-bottom: 5px solid transparent;
+    //   border-right: 5px solid #363636;
+    //   transform: translate(-0.7rem, 0.6rem);
+    // }
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.loginForm {
+  background: rgba(123, 123, 123, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 10px;
+  padding: 2rem 3rem;
+
+  .loginFormLHS {
+    grid-area: lhs;
+  }
+
+  .loginFormRHS {
+    grid-area: rhs;
+
+    h4 {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin: 0;
+    }
+  }
+
+  .loginFormMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .loginInput {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+
+      button {
+        width: 5rem;
+        padding: 0.8rem 0;
+        background-color: rgb(0, 255, 136);
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-family: 'Open Sans';
+      }
+    }
+  }
+}
