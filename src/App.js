@@ -2,11 +2,13 @@ import React from 'react';
 import styles from './App.less';
 import Input from './components/Input/Input';
 import { Formik } from 'formik';
+import { CloseCircleTwoTone } from '@ant-design/icons';
 
 class App extends React.Component {
   state = {
     emailError: '',
     passwordError: '',
+    showError: false,
   };
 
   setErrors = (error, toValue) => {
@@ -15,15 +17,34 @@ class App extends React.Component {
     });
   };
 
+  setShowErr = (val) => {
+    this.setState({
+      showError: val,
+    });
+  };
+
   render() {
     return (
       <div className={styles.main}>
-        {this.state.emailError || this.state.passwordError ? (
+        {this.state.showError &&
+        (this.state.emailError || this.state.passwordError) ? (
           <div className={styles.notification}>
             <div className={styles.notificationText}>
-              <p>~ {this.state.emailError}</p>
-              <p>~ {this.state.passwordError}</p>
+              <p>
+                {this.state.emailError ? `❌ ${this.state.emailError}` : null}
+              </p>
+              <p>
+                {this.state.passwordError
+                  ? `❌ ${this.state.passwordError}`
+                  : null}
+              </p>
             </div>
+            <CloseCircleTwoTone
+              className={styles.closeIcon}
+              style={{ fontSize: '0.8rem' }}
+              twoToneColor='#eb2f96'
+              onClick={() => this.setShowErr(false)}
+            />
           </div>
         ) : null}
         <div className={styles.container}>
@@ -44,6 +65,7 @@ class App extends React.Component {
                   if (!values.email) {
                     errors.email = 'Please enter your email before submit.';
                     this.setErrors(errors.email, errorOf.emailError);
+                    this.setShowErr(true);
                   } else if (
                     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
                       values.email
@@ -51,6 +73,7 @@ class App extends React.Component {
                   ) {
                     errors.email = 'Invalid email address.';
                     this.setErrors(errors.email, errorOf.emailError);
+                    this.setShowErr(true);
                   } else {
                     this.setErrors('', errorOf.emailError);
                   }
@@ -59,10 +82,12 @@ class App extends React.Component {
                     errors.password =
                       'Please enter your password before submit.';
                     this.setErrors(errors.password, errorOf.passwordError);
+                    this.setShowErr(true);
                   } else if (values.password.trim().length <= 8) {
                     errors.password =
                       'Password should be greater than 8 characters.';
                     this.setErrors(errors.password, errorOf.passwordError);
+                    this.setShowErr(true);
                   } else {
                     this.setErrors('', errorOf.passwordError);
                   }
